@@ -1,0 +1,181 @@
+<mat-card>
+
+  <form (submit)="onAddTuition(tuitionform)" #tuitionform="ngForm">
+    <mat-form-field>
+      <input matInput
+      placeholder="Title"
+       type="text"
+       name="title"
+       ngModel
+       required
+       #title ="ngModel">
+
+       <mat-error *ngIf="title.invalid">please post a valid title</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="Class"
+      name="classs"
+      required
+      ngModel
+      #classs="ngModel">
+
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="9">9</mat-option>
+        <mat-option value="10">10</mat-option>
+
+      </mat-select>
+      <mat-error *ngIf="classs.invalid">please post a valid class</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="Category"
+      name ="category"
+      required
+      ngModel
+      #category="ngModel">
+
+        <mat-option value="Bangla Medium">Bangla Medium</mat-option>
+        <mat-option value="English Medium">English Medium</mat-option>
+      </mat-select>
+      <mat-error *ngIf="category.invalid">please post a valid category</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="Student Gender"
+      name ="student_gender"
+      ngModel
+      required
+      #student_gender="ngModel">
+
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="student_gender">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select
+        placeholder="Tutor Gender Preference"
+        name="tutor_gender"
+         ngModel
+         required
+         #tutor_gender="ngModel">
+
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+        <mat-error *ngIf="tutor_gender">please post a valid input</mat-error>
+
+      </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="Salary"
+      type="number"
+      name="salary"
+      ngModel
+      required
+      #salary="ngModel">
+      <mat-error *ngIf="salary.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="No of Students"
+      type="number"
+      name="no_of_student"
+      ngModel
+      required
+      #no_of_student="ngModel">
+
+      <mat-error *ngIf="no_of_student">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="Subjects"
+      type="text"
+      name="subjects"
+      ngModel
+      required
+      #subjects="ngModel">
+      <mat-error *ngIf="subjects.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="Location"
+      type="text"
+      name="location"
+      ngModel
+      required
+      #location="ngModel">
+      <mat-error *ngIf="location.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select
+        placeholder="Need to tuition per week"
+        name="days_per_week"
+        ngModel
+        required
+        #days_per_week="ngModel">
+
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+          <mat-option value="6">6</mat-option>
+          <mat-option value="7">7</mat-option>
+
+
+        </mat-select>
+        <mat-error *ngIf="days_per_week">please post a valid input</mat-error>
+
+      </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+      placeholder="Extra requirement"
+      matInput rows="4"
+      name="extra_requirement"
+      ngModel
+
+      #extra_requirement>
+
+    </textarea>
+
+    <mat-error *ngIf="extra_requirement">please post a valid input</mat-error>
+
+    </mat-form-field>
+    <button
+    mat-raised-button
+    color="primary"
+    type="submit">save post</button>
+  </form>
+
+
+</mat-card>

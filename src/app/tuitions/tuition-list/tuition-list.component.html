@@ -1,0 +1,43 @@
+<mat-card *ngFor="let tuition of tuitions">
+  <mat-card-title>
+     {{tuition.title}}
+  </mat-card-title>
+  <mat-card-content>
+    <!-- {{tuition.content}} -->
+    <mat-grid-list cols="2" rowHeight="20:2">
+        <!-- <mat-grid-tile>title:{{tuition.title }}</mat-grid-tile> -->
+        <mat-grid-tile>
+
+          class: {{tuition.classs}}
+        </mat-grid-tile>
+
+         <mat-grid-tile>category: {{tuition.category}}</mat-grid-tile>
+        <mat-grid-tile>
+          Student Gender: {{tuition.student_gender}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Salary: {{tuition.salary}}
+        </mat-grid-tile> <mat-grid-tile>
+          No of Students: {{tuition.no_of_student}}
+        </mat-grid-tile> <mat-grid-tile>
+          Location: {{tuition.location}}
+        </mat-grid-tile> <mat-grid-tile>
+          Days Per Week:     {{tuition.days_per_week}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Subjects: {{tuition.subjects}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Tutor Gender Preference: {{tuition.tutor_gender}}
+        </mat-grid-tile>
+      </mat-grid-list>
+      <p class="info-text">{{tuition.extra_requirement}}</p>
+  </mat-card-content>
+  <mat-action-row>
+    <button class="none"color="primary" mat-button>Edit</button>
+    <button color="warn" mat-button (click)="onDelete(tuition.id)">Delete</button>
+    <button color="primary" mat-button>Apply</button>
+
+  </mat-action-row>
+</mat-card>
+<p class="info-text mat-body-1" *ngIf="tuitions.length <=0">No tuition available.</p>
