@@ -15,3 +15,9 @@ mat-grid-tile{
   text-align: center;
 }
 
+mat-card-actions{
+   /* float: right; */
+  align-content: right;
+  align-items: right;
+
+}

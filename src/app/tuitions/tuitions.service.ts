@@ -11,7 +11,7 @@ export class TuitionsService{
 
   constructor(private http: HttpClient){}
 
-  getTuition(){
+  getTuitions(){
     this.http.get<{message:string, tuitions:any}>('http://localhost:3000/api/tuitions')
     .pipe(map((tuitionData) =>{
       return tuitionData.tuitions.map(tuition =>{
@@ -37,6 +37,9 @@ export class TuitionsService{
     });
   }
 
+  getTuition(id:string){
+    return {...this.tuitions.find(p => p.id ===id)};
+  }
   getTuitionUpdateListener(){
     return this.tuitionsUpdated.asObservable();
   }
@@ -73,6 +76,41 @@ export class TuitionsService{
         tuition.id = id;
         this.tuitions.push(tuition);
         this.tuitionsUpdated.next([...this.tuitions]);
+      });
+
+  }
+
+  updateTuition(id:string, title: string,
+    classs: number,
+    category: string,
+    student_gender: string,
+    tutor_gender: string,
+    salary: number,
+    no_of_student: number,
+    subjects: string,
+    location: string,
+    days_per_week: number,
+    extra_requirement: string){
+
+      const tuition: Tuition= {
+        id: id,
+        title: title,
+        classs: classs,
+        category: category,
+        student_gender: student_gender,
+        tutor_gender: tutor_gender,
+        salary: salary,
+        no_of_student: no_of_student,
+        subjects: subjects,
+        location: location,
+        days_per_week: days_per_week,
+        extra_requirement: extra_requirement
+      };
+
+      this.http.put("http://localhost:3000/api/tuitions/" + id, tuition)
+      .subscribe((response) => {
+        console.log(response);
+
       });
 
   }

@@ -1,20 +1,38 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Tuition } from '../tuition.model';
 import { Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { TuitionsService } from '../tuitions.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-tuition-create',
   templateUrl: './tuition-create.component.html',
   styleUrls: ['./tuition-create.component.css']
 })
-export class TuitionCreateComponent {
+export class TuitionCreateComponent implements OnInit {
 
-  constructor(public tuitionsService:TuitionsService){}
+  private mode = 'create';
+  private tuitionId: string;
+  tuition: Tuition;
 
-  onAddTuition(form: NgForm){
+  constructor(public tuitionsService:TuitionsService, public route:ActivatedRoute){}
+
+  ngOnInit(){
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if(paramMap.has('tuitionId')){
+        this.mode = 'edit';
+        this.tuitionId = paramMap.get('tuitionId');
+        this.tuition= this.tuitionsService.getTuition(this.tuitionId);
+      } else{
+        this.mode ='create';
+        this.tuitionId =null;
+      }
+    });
+  }
+
+  onSaveTuition(form: NgForm){
     if(form.invalid){
       return;
     }
@@ -31,9 +49,17 @@ export class TuitionCreateComponent {
     //   days_per_week:form.value.days_per_week ,
     //   extra_requirement:form.value.extra_requirement
     // };
-    this.tuitionsService.addTuition(form.value.title,form.value.classs,form.value.category ,
-      form.value.student_gender,form.value.tutor_gender,form.value.salary,form.value.no_of_student ,
-      form.value.subjects,form.value.location,form.value.days_per_week ,form.value.extra_requirement);
+
+    if(this.mode = 'create'){
+      this.tuitionsService.addTuition(form.value.title,form.value.classs,form.value.category ,
+        form.value.student_gender,form.value.tutor_gender,form.value.salary,form.value.no_of_student ,
+        form.value.subjects,form.value.location,form.value.days_per_week ,form.value.extra_requirement);
+    }else{
+      this.tuitionsService.updateTuition(this.tuitionId,form.value.title,form.value.classs,form.value.category ,
+        form.value.student_gender,form.value.tutor_gender,form.value.salary,form.value.no_of_student ,
+        form.value.subjects,form.value.location,form.value.days_per_week ,form.value.extra_requirement)
+    }
+
 
     form.resetForm();
   }

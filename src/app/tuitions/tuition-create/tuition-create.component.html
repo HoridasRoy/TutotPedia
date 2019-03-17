@@ -1,12 +1,11 @@
 <mat-card>
 
-  <form (submit)="onAddTuition(tuitionform)" #tuitionform="ngForm">
+  <form (submit)="onSaveTuition(tuitionform)" #tuitionform="ngForm">
     <mat-form-field>
       <input matInput
       placeholder="Title"
-       type="text"
        name="title"
-       ngModel
+       [ngModel]="tuition?.title"
        required
        #title ="ngModel">
 
@@ -18,8 +17,8 @@
       <mat-select
       placeholder="Class"
       name="classs"
+      [ngModel]="tuition?.classs"
       required
-      ngModel
       #classs="ngModel">
 
         <mat-option value="1">1</mat-option>
@@ -42,7 +41,7 @@
       placeholder="Category"
       name ="category"
       required
-      ngModel
+      [ngModel] = "tuition?.category"
       #category="ngModel">
 
         <mat-option value="Bangla Medium">Bangla Medium</mat-option>
@@ -56,7 +55,7 @@
       <mat-select
       placeholder="Student Gender"
       name ="student_gender"
-      ngModel
+      [ngModel] ="tuition?.student_gender"
       required
       #student_gender="ngModel">
 
@@ -71,7 +70,7 @@
         <mat-select
         placeholder="Tutor Gender Preference"
         name="tutor_gender"
-         ngModel
+         [ngModel] ="tuition?.tutor_gender"
          required
          #tutor_gender="ngModel">
 
@@ -88,7 +87,7 @@
       placeholder="Salary"
       type="number"
       name="salary"
-      ngModel
+      [ngModel] = "tuition?.salary"
       required
       #salary="ngModel">
       <mat-error *ngIf="salary.invalid">please post a valid input</mat-error>
@@ -101,7 +100,7 @@
       placeholder="No of Students"
       type="number"
       name="no_of_student"
-      ngModel
+      [ngModel] ="tuition?.no_of_student"
       required
       #no_of_student="ngModel">
 
@@ -115,7 +114,7 @@
       placeholder="Subjects"
       type="text"
       name="subjects"
-      ngModel
+      [ngModel] ="tuition?.subjects"
       required
       #subjects="ngModel">
       <mat-error *ngIf="subjects.invalid">please post a valid input</mat-error>
@@ -128,7 +127,7 @@
       placeholder="Location"
       type="text"
       name="location"
-      ngModel
+      [ngModel] = "tuition?.location"
       required
       #location="ngModel">
       <mat-error *ngIf="location.invalid">please post a valid input</mat-error>
@@ -139,7 +138,7 @@
         <mat-select
         placeholder="Need to tuition per week"
         name="days_per_week"
-        ngModel
+        [ngModel] = "tuition?.days_per_week"
         required
         #days_per_week="ngModel">
 
@@ -162,7 +161,7 @@
       placeholder="Extra requirement"
       matInput rows="4"
       name="extra_requirement"
-      ngModel
+      [ngModel] = "tuition?.extra_requirement"
 
       #extra_requirement>
 

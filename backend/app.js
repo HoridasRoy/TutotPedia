@@ -70,6 +70,28 @@ app.get('/api/tuitions', (req,res,next) => {
 
 });
 
+app.put('/api/tuitions/:id', (req, res, next) => {
+  const tuition = new Tuition({
+    title: req.body.title,
+    classs:req.body.classs ,
+    category:req.body.category ,
+    student_gender:req.body.student_gender ,
+    tutor_gender: req.body.tutor_gender,
+    salary: req.body.salary ,
+    no_of_student: req.body.no_of_student,
+    subjects: req.body.subjects,
+    location: req.body.location,
+    days_per_week: req.body.days_per_week,
+    extra_requirement: req.body.extra_requirement
+  });
+  Tuition.updateOne({_id: req.params.id}, tuition).then(result => {
+    console.log(result);
+    res.status(201).json({
+      message: "updated successfully"
+    });
+  });
+});
+
 app.delete('/api/tuitions/:id', (req, res, next) => {
 
   Tuition.deleteOne({_id:req.params.id}).then(result =>{

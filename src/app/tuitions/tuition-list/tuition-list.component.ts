@@ -22,7 +22,7 @@ export class TuitionListComponent implements OnInit,OnDestroy {
 
   ngOnInit(){
 
-    this.tuitionsService.getTuition();
+    this.tuitionsService.getTuitions();
     this.tuitionSub = this.tuitionsService.getTuitionUpdateListener()
     .subscribe((tuitions: Tuition[]) =>{
       this.tuitions = tuitions;
