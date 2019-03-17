@@ -1,39 +1,58 @@
-import { Component, Output, OnInit } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Tuition } from '../tuition.model';
-import { Title } from '@angular/platform-browser';
-import { NgForm } from '@angular/forms';
-import { TuitionsService } from '../tuitions.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, Output, OnInit } from "@angular/core";
+import { EventEmitter } from "@angular/core";
+import { Tuition } from "../tuition.model";
+import { NgForm } from "@angular/forms";
+import { TuitionsService } from "../tuitions.service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 @Component({
-  selector: 'app-tuition-create',
-  templateUrl: './tuition-create.component.html',
-  styleUrls: ['./tuition-create.component.css']
+  selector: "app-tuition-create",
+  templateUrl: "./tuition-create.component.html",
+  styleUrls: ["./tuition-create.component.css"]
 })
 export class TuitionCreateComponent implements OnInit {
+  tuition: Tuition;
 
   private mode = 'create';
   private tuitionId: string;
-  tuition: Tuition;
 
-  constructor(public tuitionsService:TuitionsService, public route:ActivatedRoute){}
+  constructor(
+    public tuitionsService: TuitionsService,
+    public route: ActivatedRoute
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('tuitionId')){
+
+      if (paramMap.has('tuitionId')) {
         this.mode = 'edit';
         this.tuitionId = paramMap.get('tuitionId');
-        this.tuition= this.tuitionsService.getTuition(this.tuitionId);
-      } else{
-        this.mode ='create';
-        this.tuitionId =null;
+        this.tuitionsService.getTuition(this.tuitionId)
+        .subscribe((tuitionData)=> {
+          this.tuition ={
+            id: tuitionData._id,
+            title: tuitionData.title,
+        classs: tuitionData.classs,
+        category: tuitionData.category,
+        student_gender: tuitionData.student_gender,
+        tutor_gender: tuitionData.tutor_gender,
+        salary: tuitionData.salary,
+        no_of_student: tuitionData.no_of_student,
+        subjects: tuitionData.subjects,
+        location: tuitionData.location,
+        days_per_week: tuitionData.days_per_week,
+        extra_requirement: tuitionData.extra_requirement
+          };
+        });
+      } else {
+        this.mode = 'create';
+        this.tuitionId = null;
       }
     });
   }
 
-  onSaveTuition(form: NgForm){
-    if(form.invalid){
+  onSaveTuition(form: NgForm) {
+    if (form.invalid) {
       return;
     }
     // const tuition: Tuition ={
@@ -50,19 +69,38 @@ export class TuitionCreateComponent implements OnInit {
     //   extra_requirement:form.value.extra_requirement
     // };
 
-    if(this.mode = 'create'){
-      this.tuitionsService.addTuition(form.value.title,form.value.classs,form.value.category ,
-        form.value.student_gender,form.value.tutor_gender,form.value.salary,form.value.no_of_student ,
-        form.value.subjects,form.value.location,form.value.days_per_week ,form.value.extra_requirement);
-    }else{
-      this.tuitionsService.updateTuition(this.tuitionId,form.value.title,form.value.classs,form.value.category ,
-        form.value.student_gender,form.value.tutor_gender,form.value.salary,form.value.no_of_student ,
-        form.value.subjects,form.value.location,form.value.days_per_week ,form.value.extra_requirement)
+    if (this.mode === 'create') {
+      this.tuitionsService.addTuition(
+        form.value.title,
+        form.value.classs,
+        form.value.category,
+        form.value.student_gender,
+        form.value.tutor_gender,
+        form.value.salary,
+        form.value.no_of_student,
+        form.value.subjects,
+        form.value.location,
+        form.value.days_per_week,
+        form.value.extra_requirement
+      );
+    } else {
+      console.log(this.mode);
+      this.tuitionsService.updateTuition(
+        this.tuitionId,
+        form.value.title,
+        form.value.classs,
+        form.value.category,
+        form.value.student_gender,
+        form.value.tutor_gender,
+        form.value.salary,
+        form.value.no_of_student,
+        form.value.subjects,
+        form.value.location,
+        form.value.days_per_week,
+        form.value.extra_requirement
+      );
     }
-
 
     form.resetForm();
   }
 }
-
-

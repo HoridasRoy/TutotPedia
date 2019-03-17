@@ -9,13 +9,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TuitionCreateComponent } from './tuitions/tuition-create/tuition-create.component';
 import {HeaderComponent} from './header/header.component';
 import {TuitionListComponent} from './tuitions/tuition-list/tuition-list.component'
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     TuitionCreateComponent,
     HeaderComponent,
-    TuitionListComponent
+    TuitionListComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

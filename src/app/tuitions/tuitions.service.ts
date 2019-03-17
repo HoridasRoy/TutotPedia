@@ -38,7 +38,18 @@ export class TuitionsService{
   }
 
   getTuition(id:string){
-    return {...this.tuitions.find(p => p.id ===id)};
+    return this.http.get<{ _id: string; title: string,
+      classs: number,
+      category: string,
+      student_gender: string,
+      tutor_gender: string,
+      salary: number,
+      no_of_student: number,
+      subjects: string,
+      location: string,
+      days_per_week: number,
+      extra_requirement: string}>(
+      'http://localhost:3000/api/tuitions/' + id);
   }
   getTuitionUpdateListener(){
     return this.tuitionsUpdated.asObservable();
@@ -109,7 +120,11 @@ export class TuitionsService{
 
       this.http.put("http://localhost:3000/api/tuitions/" + id, tuition)
       .subscribe((response) => {
-        console.log(response);
+        const updatedTuitions = [...this.tuitions];
+        const oldTuitionIndex = updatedTuitions.findIndex(p => p.id === tuition.id);
+        updatedTuitions[oldTuitionIndex] = tuition;
+        this.tuitions = updatedTuitions;
+        this.tuitionsUpdated.next([...this.tuitions]);
 
       });
 
