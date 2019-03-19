@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Tuition } from '../tuition.model';
 import { TuitionsService } from '../tuitions.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-tuition-list',
@@ -17,8 +18,10 @@ export class TuitionListComponent implements OnInit,OnDestroy {
   // ];
   tuitions: Tuition[] = [];
   private tuitionSub: Subscription;
+  private authStatusSub: Subscription;
+  userIsAuthenticated = false;
 
-  constructor(public tuitionsService: TuitionsService){}
+  constructor(public tuitionsService: TuitionsService, private authService: AuthService){}
 
   ngOnInit(){
 
@@ -27,6 +30,11 @@ export class TuitionListComponent implements OnInit,OnDestroy {
     .subscribe((tuitions: Tuition[]) =>{
       this.tuitions = tuitions;
     });
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
   }
 
   onDelete(tuitionId: string){
@@ -34,5 +42,6 @@ export class TuitionListComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy(){
     this.tuitionSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 }

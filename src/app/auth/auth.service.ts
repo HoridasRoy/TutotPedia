@@ -39,6 +39,8 @@ export class AuthService{
       const token = response.token;
       this.token = token;
       if(token){
+
+
         const expiresInDuration = response.expiresIn;
         console.log(expiresInDuration);
         this.setAuthTimer(expiresInDuration);
@@ -48,7 +50,7 @@ export class AuthService{
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         console.log(expirationDate);
         this.saveAuthData(token, expirationDate);
-        this.router.navigate(['/create']);
+        this.router.navigate(['/']);
       }
     });
   }

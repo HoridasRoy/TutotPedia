@@ -8,13 +8,13 @@ import { AuthService } from "../auth.service";
 export class LoginComponent {
   isLoading = false;
 
-  //constructor (private authService: AuthService){}
+  constructor (private authService: AuthService){}
 
   onLogin(form: NgForm){
     if(form.invalid){
       return;
     }
-    //this.authService.login(form.value.email, form.value.password);
+    this.authService.login(form.value.email, form.value.password);
   }
 }
 

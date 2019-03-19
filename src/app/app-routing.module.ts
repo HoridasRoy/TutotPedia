@@ -7,7 +7,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  {path: '', component:TuitionListComponent,canActivate: [AuthGuard]},
+  {path: '', component:TuitionListComponent},
   {path:'create', component: TuitionCreateComponent,canActivate: [AuthGuard]},
   {path: 'edit/:tuitionId', component:TuitionCreateComponent,canActivate: [AuthGuard]},
   {path: 'login', component:LoginComponent},
@@ -16,6 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
