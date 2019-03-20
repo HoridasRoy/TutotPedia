@@ -11,9 +11,11 @@ import {HeaderComponent} from './header/header.component';
 import {TuitionListComponent} from './tuitions/tuition-list/tuition-list.component'
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { UserCreateComponent} from './users/user-create/user-create.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { HomeComponent } from './home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,9 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HeaderComponent,
     TuitionListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UserCreateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

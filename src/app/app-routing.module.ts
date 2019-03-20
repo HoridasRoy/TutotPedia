@@ -5,13 +5,17 @@ import { TuitionCreateComponent } from './tuitions/tuition-create/tuition-create
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
+import { UserCreateComponent } from './users/user-create/user-create.component';
+import { HomeComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
-  {path: '', component:TuitionListComponent},
+  {path: '', component:HomeComponent},
+  {path: 'tuitions', component:TuitionListComponent, canActivate:[AuthGuard]},
   {path:'create', component: TuitionCreateComponent,canActivate: [AuthGuard]},
   {path: 'edit/:tuitionId', component:TuitionCreateComponent,canActivate: [AuthGuard]},
   {path: 'login', component:LoginComponent},
-  {path: 'signup', component:SignupComponent}
+  {path: 'signup', component:SignupComponent},
+  {path: 'profileEdit', component: UserCreateComponent}
 ];
 
 @NgModule({

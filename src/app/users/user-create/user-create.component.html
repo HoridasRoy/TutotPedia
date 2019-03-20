@@ -1,0 +1,180 @@
+<mat-card>
+
+  <form (submit)="onSaveUser(userform)"  #userform="ngForm">
+    <mat-form-field>
+      <input matInput
+      placeholder="Name"
+       name="name"
+       [ngModel]="user?.name"
+       required
+       #name ="ngModel">
+
+       <mat-error *ngIf="name.invalid">please post a valid name</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="Father Name"
+      name="fatherName"
+      [ngModel]="user?.fatherName"
+      required
+      #fatherName="ngModel">
+
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="9">9</mat-option>
+        <mat-option value="10">10</mat-option>
+
+      </mat-select>
+      <mat-error *ngIf="fatherName.invalid">please post a valid class</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="motherName"
+      name ="motherName"
+      required
+      [ngModel] = "user?.motherName"
+      #motherName="ngModel">
+
+        <mat-option value="Bangla Medium">Bangla Medium</mat-option>
+        <mat-option value="English Medium">English Medium</mat-option>
+      </mat-select>
+      <mat-error *ngIf="motherName.invalid">please post a valid category</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="birthDate"
+      name ="birthDate"
+      [ngModel] ="user?.birthDate"
+      required
+      #birthDate="ngModel">
+
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="birthDate.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select
+        placeholder="gender"
+        name="gender"
+         [ngModel] ="user?.gender"
+         required
+         #gender="ngModel">
+
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+        <mat-error *ngIf="gender">please post a valid input</mat-error>
+
+      </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="religion"
+
+      name="religion"
+      [ngModel] = "user?.religion"
+      required
+      #religion="ngModel">
+      <mat-error *ngIf="religion.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="maritalStatus"
+
+      name="maritalStatus"
+      [ngModel] ="user?.maritalStatus"
+      required
+      #maritalStatus="ngModel">
+
+      <mat-error *ngIf="maritalStatus">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="nationality"
+      type="text"
+      name="nationality"
+      [ngModel] ="user?.nationality"
+      required
+      #nationality="ngModel">
+      <mat-error *ngIf="nationality.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="nid"
+      type="text"
+      name="nid"
+      [ngModel] = "user?.nid"
+      required
+      #nid="ngModel">
+      <mat-error *ngIf="nid.invalid">please post a valid input</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select
+        placeholder="permanent_address"
+        name="permanent_address"
+        [ngModel] = "user?.permanent_address"
+        required
+        #permanent_address="ngModel">
+
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+          <mat-option value="6">6</mat-option>
+          <mat-option value="7">7</mat-option>
+
+
+        </mat-select>
+        <mat-error *ngIf="permanent_address">please post a valid input</mat-error>
+
+      </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+      placeholder="current_address"
+      matInput rows="4"
+      name="current_address"
+      [ngModel] = "user?.current_address"
+
+      #current_address>
+
+    </textarea>
+
+    <mat-error *ngIf="current_address">please post a valid input</mat-error>
+
+    </mat-form-field>
+    <button
+    mat-raised-button
+    color="primary"
+    type="submit">save post</button>
+  </form>
+
+
+</mat-card>

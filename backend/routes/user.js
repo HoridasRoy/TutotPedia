@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const CheckAuth = require('../middleware/check-auth');
+
 
 router.post('/signup', (req, res, next) =>{
 
@@ -74,4 +76,59 @@ router.post('/login', (req, res, next) => {
     });
   });
 });
+
+router.put('/:id', CheckAuth,(req, res, next) => {
+  console.log(req.params.id);
+  const user = new User( {
+    _id: req.body.id,
+    name: req.body.name,
+    fatherName: req.body.fatherName,
+    motherName: req.body.motherName,
+    birthDate: req.body.birthDate,
+    gender: req.body.gender,
+    religion: req.body.religion,
+    maritalStatus: req.body.maritalStatus,
+    nationality: req.body.nationality,
+    nid: req.body.nid,
+    permanent_address: req.body.permanent_address,
+    current_address: req.body.current_address,
+    examTitle: req.body.examTitle,
+    major: req.body.major,
+    institute: req.body.institute,
+    result: req.body.result,
+    passingYear: req.body.passingYear,
+    duration: req.body.duration,
+    board: req.body.board
+  });
+  User.updateOne({_id: req.params.id}, tuition).then(result => {
+    console.log(result);
+    res.status(201).json({
+      message: "updated successfully"
+    });
+  });
+});
+
+router.get('/:id',CheckAuth,(req, res, next) => {
+  User.findById(req.params.id).then(tuition => {
+    if(tuition) {
+      res.status(200).json(tuition);
+    } else {
+      res.status(404).json({
+        message: 'Tuition not found'
+      });
+    }
+  });
+});
+
+// router.get('',CheckAuth, (req,res,next) => {
+//   User.find()
+//   .then(documents =>{
+//     res.status(200).json({
+//       message:'post fetched successfully..',
+//       tuitions: documents
+//     });
+//   })
+
+// });
+
 module.exports =router;

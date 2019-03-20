@@ -3,6 +3,7 @@ import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
 import { AuthData } from "../auth/auth-data.model";
 import { Tuition } from "../tuitions/tuition.model";
+import { User } from "../users/user.model";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   user : AuthData;
   // user: Tuition;
   //name =this.user.email;
-  name ="";
+  user2: User;
   constructor(private authService: AuthService) {}
 
   ngOnInit(){

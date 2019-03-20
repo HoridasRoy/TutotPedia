@@ -26,7 +26,9 @@
   <ul *ngIf="userIsAuthenticated">
     <button mat-button [matMenuTriggerFor]="menu">Author</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Edit Profile</button>
+      <!-- <a class="none" color="primary" mat-button [routerLink]="['/proflieEdit',user2.id]">Edit</a> -->
+
+      <button  mat-menu-item [routerLink]="['/profileEdit']">Edit Profile</button>
       <button  mat-button (click)="onLogout()" >Logout</button>
     </mat-menu>
   </ul>
