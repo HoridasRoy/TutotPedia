@@ -13,24 +13,7 @@ const userSchema = mongoose.Schema({
     required: true,
     minLength: 6
   },
-  name: String,
-  fatherName: String,
-  motherName: String,
-  birthDate: Date,
-  gender: String,
-  religion: String,
-  maritalStatus: String,
-  nationality: String,
-  nid: String,
-  permanent_address: String,
-  current_address: String,
-  examTitle: String,
-  major: String,
-  institute: String,
-  result: Number,
-  passingYear: Number,
-  duration: Number,
-  board: String
+
 });
 
 userSchema.plugin(uniqueValidator);

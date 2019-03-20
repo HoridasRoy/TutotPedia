@@ -1,0 +1,60 @@
+<mat-card *ngFor="let user of users">
+  <mat-card-title class="info-text">
+    {{user.name}}
+  </mat-card-title>
+  <mat-card-content>
+<mat-card >
+  <mat-card-title>
+    Basic Information
+  </mat-card-title>
+  <mat-card-content>
+
+    <P>Father's Name: {{user.fatherName}} </P>
+    <P>Mother's Name: {{user.motherName}} </P>
+    <P>BirthDate: {{user.birthDate}} </P>
+    <P>Religion: {{user.religion}} </P>
+    <P>MaritalStatus: {{user.maritalStatus}} </P>
+    <P>Nationality: {{user.nationality}} </P>
+    <P>NID No: {{user.nid}} </P>
+
+
+
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card >
+    <mat-card-title>
+      Educational Information
+    </mat-card-title>
+    <mat-card-content>
+
+        <P>ExamTitle: {{user.examTitle}} </P>
+        <P>Major: {{user.major}} </P>
+        <P>institute: {{user.institute}} </P>
+        <P>Result: {{user.result}} </P>
+        <P>passingYear: {{user.passingYear}} </P>
+        <P>Duration: {{user.duration}} </P>
+        <P>Board: {{user.board}} </P>
+
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card >
+      <mat-card-title>
+        Contact
+      </mat-card-title>
+      <mat-card-content>
+
+          <P>Permanent Address: {{user.permanent_address}} </P>
+
+          <p> Current Address: {{user.current_address}}</p>
+      </mat-card-content>
+
+    </mat-card>
+</mat-card-content>
+</mat-card>
+<p class="info-text mat-body-1" *ngIf="users.length <=0">No user available.</p>

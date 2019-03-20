@@ -3,13 +3,14 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class TuitionsService{
   private tuitions: Tuition[] =[];
   private tuitionsUpdated = new Subject<Tuition[]>();
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router: Router){}
 
   getTuitions(){
     this.http.get<{message:string, tuitions:any}>('http://localhost:3000/api/tuitions')
@@ -87,6 +88,8 @@ export class TuitionsService{
         tuition.id = id;
         this.tuitions.push(tuition);
         this.tuitionsUpdated.next([...this.tuitions]);
+        this.router.navigate(['/tuitions']);
+
       });
 
   }
@@ -125,7 +128,7 @@ export class TuitionsService{
         updatedTuitions[oldTuitionIndex] = tuition;
         this.tuitions = updatedTuitions;
         this.tuitionsUpdated.next([...this.tuitions]);
-
+        this.router.navigate(['/tuitions']);
       });
 
   }

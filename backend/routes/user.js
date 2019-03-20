@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const UserInfo = require('../models/userInfo')
 const CheckAuth = require('../middleware/check-auth');
 
 
@@ -77,9 +78,44 @@ router.post('/login', (req, res, next) => {
   });
 });
 
+router.post('',CheckAuth,(req,res,next)=>{
+
+  const user = new UserInfo({
+    name: req.body.name,
+    fatherName: req.body.fatherName,
+    motherName: req.body.motherName,
+    birthDate: req.body.birthDate,
+    gender: req.body.gender,
+    religion: req.body.religion,
+    maritalStatus: req.body.maritalStatus,
+    nationality: req.body.nationality,
+    nid: req.body.nid,
+    permanent_address: req.body.permanent_address,
+    current_address: req.body.current_address,
+    examTitle: req.body.examTitle,
+    major: req.body.major,
+    institute: req.body.institute,
+    result: req.body.result,
+    passingYear: req.body.passingYear,
+    duration: req.body.duration,
+    board: req.body.board
+  });
+
+ user.save().then(createdTuition => {
+
+  console.log(user);
+
+  res.status(201).json({
+    message: 'user added successfully',
+    userId: createdTuition._id
+  });
+ });
+
+});
+
 router.put('/:id', CheckAuth,(req, res, next) => {
   console.log(req.params.id);
-  const user = new User( {
+  const user = new UserInfo( {
     _id: req.body.id,
     name: req.body.name,
     fatherName: req.body.fatherName,
@@ -100,7 +136,7 @@ router.put('/:id', CheckAuth,(req, res, next) => {
     duration: req.body.duration,
     board: req.body.board
   });
-  User.updateOne({_id: req.params.id}, tuition).then(result => {
+  UserInfo.updateOne({_id: req.params.id}, tuition).then(result => {
     console.log(result);
     res.status(201).json({
       message: "updated successfully"
@@ -108,8 +144,21 @@ router.put('/:id', CheckAuth,(req, res, next) => {
   });
 });
 
+router.get('',CheckAuth, (req,res,next) => {
+  UserInfo.find()
+  .then(documents =>{
+    res.status(200).json({
+      message:'post fetched successfully..',
+      users: documents
+    });
+  })
+
+});
+
+
+
 router.get('/:id',CheckAuth,(req, res, next) => {
-  User.findById(req.params.id).then(tuition => {
+  UserInfo.findById(req.params.id).then(tuition => {
     if(tuition) {
       res.status(200).json(tuition);
     } else {

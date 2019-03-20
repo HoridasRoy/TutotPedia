@@ -5,6 +5,7 @@ const Tuition = require('./models/tuition');
 
  const tuitionsRoutes = require('./routes/tuitions');
  const userRoutes = require('./routes/user');
+ const userInfoRoutes = require('./routes/user')
 const app = express();
 
 mongoose.connect('mongodb://localhost/tutorpedia')
@@ -35,5 +36,6 @@ app.use((req, res, next) =>{
 
  app.use('/api/tuitions', tuitionsRoutes);
  app.use('/api/user', userRoutes);
+ app.use('/api/user', userInfoRoutes);
 
 module.exports = app;

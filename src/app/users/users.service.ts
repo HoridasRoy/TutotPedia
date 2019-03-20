@@ -11,31 +11,38 @@ export class UsersService{
 
   constructor(private http: HttpClient){}
 
-  // getUsers(){
-  //   this.http.get<{message:string, users:any}>('http://localhost:3000/api/user')
-  //   .pipe(map((userData) =>{
-  //     return userData.users.map(user =>{
-  //       return{
-  //         title: tuition.title,
-  //         classs: tuition.classs,
-  //         category: tuition.category,
-  //         student_gender: tuition.student_gender,
-  //         tutor_gender: tuition.tutor_gender,
-  //         salary: tuition.salary,
-  //         no_of_student: tuition.no_of_student,
-  //         subjects: tuition.subjects,
-  //         location: tuition.location,
-  //         days_per_week: tuition.days_per_week,
-  //         extra_requirement: tuition.extra_requirement,
-  //         id: tuition._id
-  //       }
-  //     })
-  //   }))
-  //   .subscribe((tui) =>{
-  //     this.users =tui;
-  //     this.usersUpdated.next([...this.users]);
-  //   });
-  // }
+  getUsers(){
+    this.http.get<{message:string, users:any}>('http://localhost:3000/api/user')
+    .pipe(map((userData) =>{
+      return userData.users.map(user =>{
+        return{
+          name: user.name,
+          fatherName: user.fatherName,
+          motherName: user.motherName,
+          birthDate: user.birthDate,
+          gender: user.gender,
+          religion:user.religion,
+          maritalStatus: user.maritalStatus,
+          nationality:user.nationality,
+          nid: user.nid,
+          permanent_address:user.permanent_address,
+          current_address: user.current_address,
+          examTitle:user.examTitle,
+          major: user.major,
+          institute: user.institute,
+          result: user.result,
+          passingYear: user.passingYear,
+          duration: user.duration,
+          board: user.board,
+          id: user._id
+        }
+      })
+    }))
+    .subscribe((tui) =>{
+      this.users =tui;
+      this.usersUpdated.next([...this.users]);
+    });
+  }
 
   getUser(id:string){
     return this.http.get<{ _id: string; name: string,

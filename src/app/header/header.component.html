@@ -1,6 +1,6 @@
 <mat-toolbar color ="primary">
   <span *ngIf ="userIsAuthenticated" >
-    <a mat-button routerLink ="/" routerLinkActive="mat-accent">TutorPedia </a>
+    <a mat-button routerLink ="/tuitions" routerLinkActive="mat-accent">TutorPedia </a>
   </span>
   <span class="spacer"></span>
   <ul>
@@ -28,7 +28,8 @@
     <mat-menu #menu="matMenu">
       <!-- <a class="none" color="primary" mat-button [routerLink]="['/proflieEdit',user2.id]">Edit</a> -->
 
-      <button  mat-menu-item [routerLink]="['/profileEdit']">Edit Profile</button>
+      <button  mat-button [routerLink]="['/profileEdit']">Edit Profile</button>
+      <button mat-button [routerLink]="['/profileView']"> View Profile</button>
       <button  mat-button (click)="onLogout()" >Logout</button>
     </mat-menu>
   </ul>

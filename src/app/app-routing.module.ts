@@ -7,6 +7,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserCreateComponent } from './users/user-create/user-create.component';
 import { HomeComponent } from './home-page/home-page.component';
+import { UserViewComponent } from './users/user-view/user-view.component';
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'edit/:tuitionId', component:TuitionCreateComponent,canActivate: [AuthGuard]},
   {path: 'login', component:LoginComponent},
   {path: 'signup', component:SignupComponent},
-  {path: 'profileEdit', component: UserCreateComponent}
+  {path: 'profileEdit', component: UserCreateComponent},
+  {path: 'profileView', component:UserViewComponent}
 ];
 
 @NgModule({

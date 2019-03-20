@@ -16,6 +16,7 @@ import { UserCreateComponent} from './users/user-create/user-create.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { HomeComponent } from './home-page/home-page.component';
+import { UserViewComponent } from './users/user-view/user-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { HomeComponent } from './home-page/home-page.component';
     LoginComponent,
     SignupComponent,
     UserCreateComponent,
-    HomeComponent
+    HomeComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,
