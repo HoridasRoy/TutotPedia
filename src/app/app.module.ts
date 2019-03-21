@@ -17,6 +17,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { HomeComponent } from './home-page/home-page.component';
 import { UserViewComponent } from './users/user-view/user-view.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { FooterComponent} from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { UserViewComponent } from './users/user-view/user-view.component';
     SignupComponent,
     UserCreateComponent,
     HomeComponent,
-    UserViewComponent
+    UserViewComponent,
+    AboutUsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserCreateComponent } from './users/user-create/user-create.component';
 import { HomeComponent } from './home-page/home-page.component';
 import { UserViewComponent } from './users/user-view/user-view.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'signup', component:SignupComponent},
   {path: 'profileEdit', component: UserCreateComponent},
-  {path: 'profileView', component:UserViewComponent}
+  {path: 'profileView', component:UserViewComponent},
+  {path: 'about', component:AboutUsComponent},
+  {path: 'footer', component:FooterComponent}
 ];
 
 @NgModule({
