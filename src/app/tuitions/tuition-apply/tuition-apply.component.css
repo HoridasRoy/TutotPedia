@@ -1,0 +1,23 @@
+:host{
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+mat-card{
+  background-color: #b3ffff;
+  margin-bottom: 1rem;
+}
+mat-grid-list,
+mat-grid-tile{
+  text-align: left;
+}
+.info-text{
+  text-align: center;
+}
+
+mat-card-actions{
+   /* float: right; */
+  align-content: right;
+  align-items: right;
+
+}

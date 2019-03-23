@@ -43,7 +43,7 @@
   <mat-card-actions *ngIf="userIsAuthenticated">
     <a class="none" color="primary" mat-button [routerLink]="['/edit',tuition.id]">Edit</a>
     <button color="warn" mat-button (click)="onDelete(tuition.id)">Delete</button>
-    <a mat-button color="primary" routerLink ="/apply" routerLinkActive ="mat-accent">Apply</a>
+    <button color="primary" mat-button-disabled>Applied</button>
 
   </mat-card-actions>
 

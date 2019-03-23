@@ -10,6 +10,7 @@ import { HomeComponent } from './home-page/home-page.component';
 import { UserViewComponent } from './users/user-view/user-view.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FooterComponent } from './footer/footer.component';
+import { TuitionApplyComponent } from './tuitions/tuition-apply/tuition-apply.component';
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'profileEdit', component: UserCreateComponent},
   {path: 'profileView', component:UserViewComponent},
   {path: 'about', component:AboutUsComponent},
-  {path: 'footer', component:FooterComponent}
+  {path: 'footer', component:FooterComponent},
+  {path: 'apply', component: TuitionApplyComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
