@@ -4,6 +4,7 @@ import { Subscription } from "rxjs";
 import { AuthData } from "../auth/auth-data.model";
 import { Tuition } from "../tuitions/tuition.model";
 import { User } from "../users/user.model";
+import { Button } from "protractor";
 
 @Component({
   selector: 'app-header',
@@ -33,6 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.authService.logout();
     //console.log(this.authService.getToken());
   }
+
 
   ngOnDestroy(){
     this.authListenerSub.unsubscribe();

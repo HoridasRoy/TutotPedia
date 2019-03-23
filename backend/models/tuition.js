@@ -12,7 +12,8 @@ const tuitionSchema = mongoose.Schema({
   subjects: {type: String, required: true},
   location: {type: String, required: true},
   days_per_week: {type: Number, required: true},
-  extra_requirement: {type: String, default:'Interested teacher requested to Apply'}
+  extra_requirement: {type: String, default:'Interested teacher requested to Apply'},
+  creator: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 
 module.exports = mongoose.model('Tuition', tuitionSchema);

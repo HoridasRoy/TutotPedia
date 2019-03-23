@@ -18,7 +18,8 @@ router.post('',CheckAuth,(req,res,next)=>{
     subjects: req.body.subjects,
     location: req.body.location,
     days_per_week: req.body.days_per_week,
-    extra_requirement: req.body.extra_requirement
+    extra_requirement: req.body.extra_requirement,
+    creator: req.userData.userId
   });
 
  tuition.save().then(createdTuition => {
@@ -44,7 +45,9 @@ router.get('',CheckAuth, (req,res,next) => {
 });
 
 router.get('/:id',CheckAuth,(req, res, next) => {
-  Tuition.findById(req.params.id).then(tuition => {
+  Tuition.findById({_id: req.params.id,creator: req.userData.userId}).then(tuition => {
+
+
     if(tuition) {
       res.status(200).json(tuition);
     } else {
@@ -56,7 +59,7 @@ router.get('/:id',CheckAuth,(req, res, next) => {
 });
 
 router.put('/:id', CheckAuth,(req, res, next) => {
-  console.log(req.params.id);
+
   const tuition = new Tuition( {
     _id: req.body.id,
     title: req.body.title,
@@ -71,22 +74,37 @@ router.put('/:id', CheckAuth,(req, res, next) => {
     days_per_week: req.body.days_per_week,
     extra_requirement: req.body.extra_requirement
   });
-  Tuition.updateOne({_id: req.params.id}, tuition).then(result => {
-    console.log(result);
-    res.status(201).json({
-      message: "updated successfully"
-    });
+  Tuition.updateOne({_id: req.params.id,creator: req.userData.userId}, tuition).then(result => {
+
+    console.log(result.nModified);
+
+    if(result.nModified > 0){
+      res.status(200).json({
+        message: 'updated successfully .'
+        });
+    }else{
+      res.status(401).json({
+        message: 'Authorization failed '
+      });
+    }
+
   });
 });
 
 router.delete('/:id',CheckAuth, (req, res, next) => {
 
-  Tuition.deleteOne({_id:req.params.id}).then(result =>{
-    console.log(result);
+  Tuition.deleteOne({_id:req.params.id,creator: req.userData.userId}).then(result =>{
 
-    res.status(200).json({
-      message: "post deleted"
-    });
+
+    if(result.n > 0){
+      res.status(200).json({
+        message: 'Deletion successfully .'
+        });
+    }else{
+      res.status(401).json({
+        message: 'Authorization failed '
+      });
+    }
   });
   //console.log("post deleted");
 
