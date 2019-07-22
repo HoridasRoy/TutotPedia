@@ -20,6 +20,7 @@ export class TuitionListComponent implements OnInit,OnDestroy {
   private tuitionSub: Subscription;
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
+  tutorCategory;
 
   constructor(public tuitionsService: TuitionsService, private authService: AuthService){}
 
@@ -35,6 +36,7 @@ export class TuitionListComponent implements OnInit,OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+     this.tutorCategory = this.authService.tuitionCategory();
   }
 
   onDelete(tuitionId: string){

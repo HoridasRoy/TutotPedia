@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
     required: true,
     minLength: 6
   },
+  category: {
+    type: String,
+    required: true,
+  }
 
 });
 

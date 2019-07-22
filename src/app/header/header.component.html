@@ -9,7 +9,7 @@
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink ="/create" routerLinkActive ="mat-accent">Hire a Tutor</a>
+      <a mat-button *ngIf="studentCategory !='Tutor'" routerLink ="/create" routerLinkActive ="mat-accent">Hire a Tutor</a>
     </li>
   </ul>
   <ul>
@@ -38,7 +38,7 @@
     <mat-menu #menu="matMenu">
       <!-- <a class="none" color="primary" mat-button [routerLink]="['/proflieEdit',user2.id]">Edit</a> -->
 
-      <button  mat-button [routerLink]="['/profileEdit']">Edit Profile</button>
+      <button  mat-button *ngIf="studentCategory !='Tutor'" [routerLink]="['/profileEdit']">Edit Profile</button>
       <button mat-button [routerLink]="['/profileView']"> View Profile</button>
       <button  mat-button (click)="onLogout()" >Logout</button>
     </mat-menu>

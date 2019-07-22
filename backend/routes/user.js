@@ -13,11 +13,14 @@ router.post('/signup', (req, res, next) =>{
     .then(hash => {
         const user = new User({
         email: req.body.email,
-        password: hash
+        password: hash,
+        category: req.body.category
       });
 
       user.save()
       .then(result => {
+        console.log(result);
+
         res.status(201).json({
           message: 'user created successfully',
           result: result
@@ -30,6 +33,8 @@ router.post('/signup', (req, res, next) =>{
       });
 
     });
+
+
 
 });
 
@@ -44,6 +49,8 @@ router.post('/login', (req, res, next) => {
         message: 'Auth failed user'
       });
     }
+    console.log(user.category);
+
     fetchedUser = user;
     return bcrypt.compare(req.body.password, user.password);
   })
@@ -180,4 +187,17 @@ router.get('/:id',CheckAuth,(req, res, next) => {
 
 // });
 
+router.delete('/:id',CheckAuth, (req, res, next) => {
+
+  UserInfo.deleteOne({_id:req.params.id}).then(result =>{
+
+
+
+    res.status(200).json({
+      message: 'Deleted'
+    });
+  });
+  //console.log("post deleted");
+
+});
 module.exports =router;

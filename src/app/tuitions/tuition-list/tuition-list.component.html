@@ -41,9 +41,9 @@
 
 
   <mat-card-actions *ngIf="userIsAuthenticated">
-    <a class="none" color="primary" mat-button [routerLink]="['/edit',tuition.id]">Edit</a>
-    <button color="warn" mat-button (click)="onDelete(tuition.id)">Delete</button>
-    <a mat-button color="primary" routerLink ="/apply" routerLinkActive ="mat-accent">Apply</a>
+    <a class="none" color="primary" *ngIf="tutorCategory !='Tutor'" mat-button [routerLink]="['/edit',tuition.id]">Edit</a>
+    <button color="warn" mat-button *ngIf="tutorCategory !='Tutor'" (click)="onDelete(tuition.id)">Delete</button>
+    <a mat-button color="primary" *ngIf="tutorCategory ==='Tutor'"  routerLink ="/apply" routerLinkActive ="mat-accent">Apply</a>
 
   </mat-card-actions>
 

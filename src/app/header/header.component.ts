@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   // user: Tuition;
   //name =this.user.email;
   user2: User;
+   studentCategory;
   constructor(private authService: AuthService) {}
 
   ngOnInit(){
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.userIsAuthenticated = isAuthenticated;
 
     });
+    this.studentCategory = this.authService.tuitionCategory();
   }
 
   onLogout(){
